@@ -1,0 +1,27 @@
+<!-- templates/home.html-->
+
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <ul>
+    <li>Do something <button class="edit button" type="submit">accept invite</button></li>
+    
+  </ul>
+
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged into any account</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <p>Dont have an account?</p>
+  <a href="{% url 'signup' %}">Sign Up</a>
+
+
+
+
+{% endif %}
+{% endblock %}

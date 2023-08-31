@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Image to Text</h1>
+  <!-- Your form to upload the image -->
+
+  {% if extracted_text %}
+    <h2>Extracted Text:</h2>
+    <p>{{ extracted_text }}</p>
+    <a href="{% url 'download_text' %}">Download Text</a>
+  {% endif %}
+{% endblock %}
+<head>
+    <title>Image to Text</title>
+</head>
+<body>
+    <h1>Image to Text</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'extract_text' %}">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Extract Text</button>
+    </form>
+</body>
+</html>
